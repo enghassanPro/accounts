@@ -1,6 +1,8 @@
 in setting file add some variables 
 in installing app:
 add "account.apps.AccountConfig" , "social_django"
+add into urls url:
+(r'^auth/' , include('account.urls' , namespace='auth')),
 add some lines at the end:
 AUTHENTICATION_BACKENDS = [
 
