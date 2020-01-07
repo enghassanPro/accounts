@@ -1,0 +1,58 @@
+{% extends "registration/base.html" %}
+{% block title %} Register  {% endblock %}
+
+{% block content %}
+
+  
+<!-- main -->
+<div class="w3layouts-main"> 
+	<div class="bg-layer">
+		<h1 class='register'>Register {{ form.errors }}</h1>
+		<div class="header-main">
+			<div class="register-main-icon">
+				<span class="fa fa-eercast"></span>
+			</div>
+			<div class="header-left-bottom">
+				<form action="{% url 'auth:register' tk=token %}" method="post">
+					{% csrf_token %}
+					<div class="icon1">
+						<span class="fa fa-user"></span>
+						{{form.first_name}}
+					</div>
+					<div class="icon1">
+						<span class="fa fa-user"></span>
+						{{form.last_name}}
+					</div>
+					<div class="icon1">
+						<span class="fa fa-user"></span>
+						{{form.username}}
+					</div>
+					<div class="icon1">
+						<span class="fa fa-envelope"></span>
+						{{form.email}}
+					</div>
+					<div class="icon1">
+						<span class="fa fa-lock"></span>
+						{{form.password}}
+					</div>
+					<div class="icon1">
+						<span class="fa fa-lock"></span>
+						{{form.password1}}
+					</div>
+					<div class="bottom">
+						<button class="btn">Log In</button>
+					</div>
+					<div class="links">
+						<p class="center"><a href="{% url 'auth:login' tk=token %}">Have Account? Login</a></p>
+						<div class="clear"></div>
+					</div>
+				</form>	
+			</div>
+
+		</div>
+		
+	</div>
+</div>	
+<!-- //main -->
+
+{% endblock %}

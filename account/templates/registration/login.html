@@ -1,0 +1,71 @@
+{% extends "registration/base.html" %}
+{% block title %} Login  {% endblock %}
+
+{% block content %}
+
+  
+<!-- main -->
+<div class="w3layouts-main"> 
+	<div class="bg-layer">
+		<h1>Login
+			
+			{% if messages %}
+				<ul>
+				{% for message in messages %}
+					<li>{{ message }}</li>
+				{% endfor %}
+				</ul>
+			{% endif %}
+			{% if form.errors %}
+				{% if send %}
+					{{form.errors}}
+					<a href="{% url 'auth:send' username=send %}">send mail
+				{% else %}
+					{{form.errors}}
+				{% endif %}
+			{% endif %}
+		</h1>
+		<div class="header-main">
+			<div class="main-icon">
+				<span class="fa fa-eercast"></span>
+			</div>
+			<div class="header-left-bottom">
+				<form action="{% url 'auth:login' tk=token %}" method="post">
+					{% csrf_token %}	
+					
+					<div class="icon1">
+						<span class="fa fa-user"></span>
+						{{form.username}}
+					</div>
+					<div class="icon1">
+						<span class="fa fa-lock"></span>
+						{{form.password}}
+					</div>
+					<div class="login-check">
+						 <label class="checkbox"><input type="checkbox" name="remember"><i> </i> Keep me logged in</label>
+					</div>
+					<div class="bottom">
+						<button type="submit" class="btn">Log In</button>
+					</div>
+					<div class="links">
+						<p><a href="{% url 'auth:reset' tk=token %}">Forgot Password?</a></p>
+						<p class="right"><a href="{% url 'auth:register' tk=token %}">New User? Register</a></p>
+						<div class="clear"></div>
+					</div>
+				</form>	
+			</div>
+			<div class="social">
+				<ul>
+					<li>or login using : </li>
+					<li><a href="{% url 'auth:social:begin' 'facebook' %}" class="facebook"><span class="fa fa-facebook"></span></a></li>
+					{% comment %} <li><a href="#" class="twitter"><span class="fa fa-twitter"></span></a></li> {% endcomment %}
+					<li><a href="{% url 'auth:social:begin' 'google-oauth2' %}" class="google"><span class="fa fa-google-plus"></span></a></li>
+				</ul>
+			</div>
+		</div>
+		
+	</div>
+</div>	
+<!-- //main -->
+
+{% endblock %}

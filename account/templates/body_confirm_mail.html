@@ -1,0 +1,10 @@
+{% autoescape off %}
+Hi {{ user }},
+{% if message == None%}
+{% else %}
+    {{message}}
+{% endif %}
+Please click on the link to confirm your registration,
+Note: the link confirmation will be destroy after {{ timeout }}.
+http://{{ domain }}{% url 'auth:active' token=token %}
+{% endautoescape %}
